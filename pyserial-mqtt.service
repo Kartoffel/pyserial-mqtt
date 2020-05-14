@@ -1,0 +1,18 @@
+[Unit]
+Description=Python serial to MQTT bridge
+After=network.target
+
+[Service]
+Type=simple
+Restart=on-failure
+RestartSec=30
+ExecStart=/usr/bin/python3 pyserial-mqtt.py 
+WorkingDirectory=/home/niek/pyserial-mqtt/
+User=niek
+Environment=PYTHONUNBUFFERED=1
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=pyserial-mqtt
+
+[Install]
+WantedBy=multi-user.target
